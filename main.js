@@ -24,12 +24,13 @@ function initMap() {
     // add a click event listener to all the markers
     map.data.addListener('click', function(event) {
 
-        // set variables that contain location & magnitude data
+        // set variables that contain location, magnitude & time data
         const location = event.feature.l.place;
         const magnitude = event.feature.l.mag;
+        const time = new Date(event.feature.l.time);
 
-        // set the content of the info window to be the location and magnitude of the clicked marker
-        infowindow.setContent(`<strong>Location:</strong> ${location} || <strong>Magnitude:</strong> ${magnitude}`);
+        // set the content of the info window to be the location, time and magnitude of the clicked marker
+        infowindow.setContent(`<strong>Location:</strong> ${location} || <strong>Time:</strong> ${time} || <strong>Magnitude:</strong> ${magnitude}`);
         // place it by the latitude & longitude of the marker
         infowindow.setPosition(event.latLng);
         infowindow.setOptions({pixelOffset: new google.maps.Size(0,-34)});
