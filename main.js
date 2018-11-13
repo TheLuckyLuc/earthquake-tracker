@@ -1,6 +1,8 @@
 // initialize Google maps
 let map;
 function initMap() {
+    // create a global info window for when you click on the markers
+    let infowindow = new google.maps.InfoWindow();
     map = new google.maps.Map(document.querySelector('#map'), {
         // the coordinates centre over London, UK
         center: {lat: 51.509865, lng: -0.118092},
@@ -17,6 +19,21 @@ function initMap() {
         return {
             icon: getCircle(magnitude)
         };
+    });
+
+    // add a click event listener to all the markers
+    map.data.addListener('click', function(event) {
+
+        // set variables that contain location & magnitude data
+        const location = event.feature.l.place;
+        const magnitude = event.feature.l.mag;
+
+        // set the content of the info window to be the location and magnitude of the clicked marker
+        infowindow.setContent(`<strong>Location:</strong> ${location} || <strong>Magnitude:</strong> ${magnitude}`);
+        // place it by the latitude & longitude of the marker
+        infowindow.setPosition(event.latLng);
+        infowindow.setOptions({pixelOffset: new google.maps.Size(0,-34)});
+        infowindow.open(map);
     });
 }
 
