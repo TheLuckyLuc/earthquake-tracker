@@ -15,20 +15,49 @@ html {
 }
 
 #header {
-    padding: 1.5rem;
-    color: white;
+    padding: 1rem 0;
+    color: rgba(255, 255, 255, 0.90);
     text-align: center;
     h1 {
         margin: 0;
-        font-size: 1.5rem;
+        text-decoration: underline;
+        line-height: 2rem;
+        margin-bottom: 0.5rem;
     }
     p {
-        margin: 0.5rem 0;
+        margin: 0;
+        line-height: 1rem;
+    }
+    h1 + p {
+        font-size: 1.2rem;
+    }
+}
+
+#buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.5rem;
+    button {
+        background: rgba(128, 128, 128, 0.4);
+        border: 1px solid gray;
+        color: white;
+        padding: 0.5rem;
+        border-radius: 5px;
+        outline: none;
+        margin: 0 0.2rem 1rem 0.2rem;
+        transition: background 0.2s linear;
+        &:focus {
+            background: rgba(255, 255, 255, 0.6);
+        }
+        &:hover {
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.4);
+        }
     }
 }
 
 #map {
     height: 100%;
     width: 100vw;
-    // margin-bottom: 2rem;
   }
