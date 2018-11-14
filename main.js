@@ -1,6 +1,8 @@
+const buttons = document.querySelectorAll('button');
+
 // initialize Google maps
 let map;
-function initMap() {
+function initMap(option) {
     // create a global info window for when you click on the markers
     let infowindow = new google.maps.InfoWindow();
     map = new google.maps.Map(document.querySelector('#map'), {
@@ -11,7 +13,7 @@ function initMap() {
     });
 
     // load the JSON earthquake data onto the map
-    map.data.loadGeoJson('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson');
+    map.data.loadGeoJson(option);
 
     // set the marker styling
     map.data.setStyle(function(feature) {
@@ -48,4 +50,20 @@ function getCircle(magnitude) {
         strokeColor: 'white',
         strokeWeight: .5
     };
+}
+
+// set options for different timescales
+const options = {
+    hour: 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson',
+    day: 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson',
+    week: 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson',
+    month: 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson',
+}
+
+// add a click event listener to each button
+for (const button of buttons) {
+    button.addEventListener('click', function() {
+        // once clicked, initialize the map passing in the matching timescale link as an argument
+        initMap(options[this.name]);
+    });
 }
