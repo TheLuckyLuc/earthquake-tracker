@@ -9,7 +9,8 @@ function initMap(option) {
         // the coordinates centre over London, UK
         center: {lat: 51.509865, lng: -0.118092},
         zoom: 3,
-        mapTypeId: 'hybrid'
+        mapTypeId: 'hybrid',
+        streetViewControl: false,
     });
 
     // load the JSON earthquake data onto the map
